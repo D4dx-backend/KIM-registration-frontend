@@ -1,61 +1,62 @@
-import React, { useState } from 'react';
-import banner from '../assets/kbanner.png';
-import borderbtm from '../assets/border-btm.png';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { 
-  GraduationCap, 
-  BookOpen, 
-  FileText, 
-  CheckCircle2, 
+import React, { useState } from "react";
+import banner from "../assets/kbanner.png";
+import borderbtm from "../assets/border-btm.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import DecryptedText from "../components/DecryptedText";
+import {
+  GraduationCap,
+  BookOpen,
+  FileText,
+  CheckCircle2,
   Circle,
   Phone,
   MessageCircle,
   CheckCircle,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle,
+} from "lucide-react";
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    dob: '',
-    address: '',
-    district: '',
-    email: '',
-    mobile: '',
-    whatsapp: '',
-    age: '',
-    gender: '',
+    fullName: "",
+    dob: "",
+    address: "",
+    district: "",
+    email: "",
+    mobile: "",
+    whatsapp: "",
+    age: "",
+    gender: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({ type: '', text: '' });
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear message when user starts typing
-    if (message.text) setMessage({ type: '', text: '' });
+    if (message.text) setMessage({ type: "", text: "" });
   };
 
   const clearForm = () => {
     setFormData({
-      fullName: '',
-      dob: '',
-      address: '',
-      district: '',
-      email: '',
-      mobile: '',
-      whatsapp: '',
-      age: '',
-      gender: '',
+      fullName: "",
+      dob: "",
+      address: "",
+      district: "",
+      email: "",
+      mobile: "",
+      whatsapp: "",
+      age: "",
+      gender: "",
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setMessage({ type: '', text: '' });
+    setMessage({ type: "", text: "" });
 
     try {
       // Prepare data for backend (matching the expected format)
@@ -68,7 +69,7 @@ const HeroSection = () => {
         mobileNumber: formData.mobile,
         whatsappNumber: formData.whatsapp || formData.mobile, // Use mobile as fallback
         age: parseInt(formData.age),
-        gender: formData.gender.toLowerCase()
+        gender: formData.gender.toLowerCase(),
       };
 
       const response = await axios.post(
@@ -76,40 +77,51 @@ const HeroSection = () => {
         registrationData,
         {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
       // Success
-      setMessage({ type: 'success', text: 'Registration successful! Thank you for registering.' });
+      // Success
+      setMessage({
+        type: "success",
+        text: "Registration successful! Thank you for registering.",
+      });
       clearForm();
-      
+      setTimeout(() => {
+        setShowForm(false);
+      }, 2000); // 5000 milliseconds = 5 seconds
+
       // Clear success message after 5 seconds
       setTimeout(() => {
-        setMessage({ type: '', text: '' });
+        setMessage({ type: "", text: "" });
       }, 5000);
-
     } catch (err) {
-      console.error('Registration error:', err);
-      
+      console.error("Registration error:", err);
+
       if (err.response?.data?.msg) {
-        setMessage({ type: 'error', text: err.response.data.msg });
+        setMessage({ type: "error", text: err.response.data.msg });
       } else if (err.response?.data?.errors) {
-        const errorMessages = err.response.data.errors.map(error => error.msg).join(', ');
-        setMessage({ type: 'error', text: errorMessages });
-      } else if (err.code === 'ERR_NETWORK') {
-        setMessage({ type: 'error', text: 'Network error. Please check your connection.' });
+        const errorMessages = err.response.data.errors
+          .map((error) => error.msg)
+          .join(", ");
+        setMessage({ type: "error", text: errorMessages });
+      } else if (err.code === "ERR_NETWORK") {
+        setMessage({
+          type: "error",
+          text: "Network error. Please check your connection.",
+        });
       } else {
-        setMessage({ type: 'error', text: 'Registration failed. Please try again.' });
+        setMessage({
+          type: "error",
+          text: "Registration failed. Please try again.",
+        });
       }
     } finally {
       setIsLoading(false);
     }
   };
-
-
-  
 
   return (
     <div>
@@ -128,30 +140,38 @@ const HeroSection = () => {
       </div>
       </div> */}
 
-<div className="px-4 py-8 md:px-8 lg:px-16">
-  <div
-    className="relative bg-auto bg-cover bg-center rounded-xl overflow-hidden mx-auto max-w-7xl"
-    style={{ backgroundImage: `url(${banner})` }}
-  >
-    <img src={banner} alt="Banner" className="w-full h-auto object-cover" />
-  </div>
-
-  
-</div>
-<div
-    className="w-full h-[20px] bg-repeat-x"
-    style={{
-      backgroundImage: `url(${borderbtm})`,
-      backgroundSize: 'auto 100%',
-    }}
-  ></div>
+      <div className="px-4 py-8 md:px-8 lg:px-16">
+        <div
+          className="relative bg-auto bg-cover bg-center rounded-xl overflow-hidden mx-auto max-w-7xl"
+          style={{ backgroundImage: `url(${banner})` }}
+        >
+          <img
+            src={banner}
+            alt="Banner"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+      <div
+        className="w-full h-[20px] bg-repeat-x"
+        style={{
+          backgroundImage: `url(${borderbtm})`,
+          backgroundSize: "auto 100%",
+        }}
+      ></div>
 
       {/* Course Info */}
       <div className="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-2xl mt-10 border border-gray-200 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-semibold text-[#8e1b3a] uppercase tracking-widest">Al Jamia Al Islamia Presents</h2>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-4 leading-tight">Understanding Islam</h1>
-          <p className="text-lg md:text-xl text-gray-600 mt-3">A 3-Month Comprehensive Online Course</p>
+          <h2 className="text-xl md:text-2xl font-semibold text-[#8e1b3a] uppercase tracking-widest">
+            Al Jamia Al Islamia Presents
+          </h2>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-4 leading-tight">
+            Understanding Islam
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mt-3">
+            A 3-Month Comprehensive Online Course
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -256,8 +276,6 @@ const HeroSection = () => {
                 }
               }, 100); // small delay to wait for the form to render
             }}
-            
-            
             className="cursor-pointer inline-flex items-center gap-3 bg-gradient-to-r from-[#8e1b3a] to-[#c44563] text-white text-lg font-semibold px-10 py-4 rounded-full shadow-md hover:from-[#73132f] hover:to-[#a6324c] transition duration-200"
           >
             <FileText className="w-5 h-5" />
@@ -266,11 +284,16 @@ const HeroSection = () => {
           <div className="text-gray-600 text-sm mt-3 space-y-1">
             <p className="flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>For more details: <span className="font-semibold">8606529689</span></span>
+              <span>
+                For more details:{" "}
+                <span className="font-semibold">8606529689</span>
+              </span>
             </p>
             <p className="flex items-center justify-center gap-2">
               <MessageCircle className="w-4 h-4" />
-              <span>WhatsApp: <span className="font-semibold">8606529687</span></span>
+              <span>
+                WhatsApp: <span className="font-semibold">8606529687</span>
+              </span>
             </p>
           </div>
         </div>
@@ -278,11 +301,16 @@ const HeroSection = () => {
 
       {/* Registration Form */}
       {showForm && (
-        <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-xl border border-gray-200" id="reg">
-          <h2 className="text-3xl font-bold text-center text-[#8e1b3a] mb-8 uppercase">Course Registration</h2>
-          
+        <div
+          className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-xl border border-gray-200"
+          id="reg"
+        >
+          <h2 className="text-3xl font-bold text-center text-[#8e1b3a] mb-8 uppercase">
+            Course Registration
+          </h2>
+
           {/* Message Display */}
-          {message.text && (
+          {/* {message.text && (
             <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
               message.type === 'success' 
                 ? 'bg-green-50 border border-green-200' 
@@ -299,123 +327,181 @@ const HeroSection = () => {
                 {message.text}
               </span>
             </div>
+          )} */}
+          {message.text && (
+            <div
+              className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                message.type === "success"
+                  ? "bg-[#fde6ec] border-[#9f405b]"
+                  : "bg-red-50 border border-red-200"
+              }`}
+            >
+              {message.type === "success" ? (
+                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+              ) : (
+                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+              )}
+
+              <span
+                className={`text-sm ${
+                  message.type === "success" ? "text-[#8e1b3a]" : "text-red-700"
+                }`}
+              >
+                {message.type === "success" ? (
+                  <DecryptedText
+                    key={message.text} // Forces rerun on each new message
+                    text={message.text}
+                    speed={40} // faster animation
+                    maxIterations={10}
+                    animateOn="view" // or "always" (by triggering on mount)
+                    revealDirection="start"
+                    className="revealed"
+                    parentClassName="all-letters"
+                    encryptedClassName="encrypted"
+                  />
+                ) : (
+                  message.text
+                )}
+              </span>
+            </div>
           )}
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             {/* Full Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Full Name
+              </label>
               <input
-                type="text" 
-                name="fullName" 
-                value={formData.fullName} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Date of Birth */}
             <div>
-              <label className="block text-sm font-medium  text-gray-700">Date of Birth</label>
-              <input  
-                type="date" 
-                name="dob" 
-                value={formData.dob} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium  text-gray-700">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                name="dob"
+                value={formData.dob}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Address */}
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700">Address</label>
-              <textarea 
-                name="address" 
-                value={formData.address} 
-                onChange={handleChange} 
-                rows={3} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium text-gray-700">
+                Address
+              </label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                rows={3}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* District */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">District</label>
-              <input 
-                type="text" 
-                name="district" 
-                value={formData.district} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium text-gray-700">
+                District
+              </label>
+              <input
+                type="text"
+                name="district"
+                value={formData.district}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email ID</label>
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium text-gray-700">
+                Email ID
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Mobile Number */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
-              <input 
-                type="tel" 
-                name="mobile" 
-                value={formData.mobile} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium text-gray-700">
+                Mobile Number
+              </label>
+              <input
+                type="tel"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* WhatsApp Number */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">WhatsApp Number</label>
-              <input 
-                type="tel" 
-                name="whatsapp" 
-                value={formData.whatsapp} 
-                onChange={handleChange} 
-                required 
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+              <label className="block text-sm font-medium text-gray-700">
+                WhatsApp Number
+              </label>
+              <input
+                type="tel"
+                name="whatsapp"
+                value={formData.whatsapp}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Age */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Age</label>
-              <input 
-                type="number" 
-                name="age" 
-                value={formData.age} 
-                onChange={handleChange} 
-                required 
+              <label className="block text-sm font-medium text-gray-700">
+                Age
+              </label>
+              <input
+                type="number"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                required
                 min="1"
                 max="120"
-                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]" 
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               />
             </div>
 
             {/* Gender */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Gender</label>
-              <select 
-                name="gender" 
-                value={formData.gender} 
-                onChange={handleChange} 
-                required 
+              <label className="block text-sm font-medium text-gray-700">
+                Gender
+              </label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
                 className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-[#8e1b3a] focus:border-[#8e1b3a]"
               >
                 <option value="">Select Gender</option>

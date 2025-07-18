@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/dialouge-logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -16,8 +16,8 @@ const Navbar = () => {
           <div className="mx-auto max-w-7xl flex items-center justify-between py-4">
             {/* Logo and Text */}
             <div className="flex items-center space-x-3">
-              <div className="w-20 h-10 rounded-full flex items-center justify-center">
-              <img src={logo} alt="Masjid Council Kerala" className="h-10" />
+              <div className="w-auto h-15 rounded-full flex items-center justify-center">
+              <img src={logo} alt="Masjid Council Kerala" className="h-15 w-auto" />
               </div>
             </div>
 
