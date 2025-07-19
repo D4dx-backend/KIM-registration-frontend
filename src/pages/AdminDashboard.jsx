@@ -437,6 +437,8 @@ import axios from 'axios';
 import logo from '../assets/kim-logo.png';
 import kinlogo from '../assets/kim-logo.png';
 import Footer from '../components/Footer';
+import { CakeSlice } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -450,7 +452,7 @@ const AdminDashboard = () => {
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
   const totalPages = Math.ceil(users.length / usersPerPage);
-    
+
   useEffect(() => {
     // Check if admin token exists
     const token = localStorage.getItem('adminToken');
@@ -749,6 +751,9 @@ const AdminDashboard = () => {
                         Location
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-bold text-[#8e1b3a] uppercase tracking-wider">
+                        Date Of Birth
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-[#8e1b3a] uppercase tracking-wider">
                         Registration Date
                       </th>
                     </tr>
@@ -790,7 +795,13 @@ const AdminDashboard = () => {
                               {user.whatsappNumber && user.whatsappNumber !== user.mobileNumber ? (
   <>
     <span className="font-medium text-sm">{user.mobileNumber}</span>
-    <span className="font-medium text-sm">• WhatsApp: {user.whatsappNumber}</span>
+    {/* <span className="font-medium text-sm">• WhatsApp: {user.whatsappNumber}</span> */}
+    <div className="flex items-center space-x-2 text-[#8e1b3a]">
+  <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+    <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
+  </div>
+  <span className="font-medium">{user.whatsappNumber}</span>
+</div>
   </>
 ) : (
   <span className="font-medium text-sm">Mobile & WhatsApp: {user.mobileNumber}</span>
@@ -807,6 +818,23 @@ const AdminDashboard = () => {
                             <span className="font-semibold text-[#8e1b3a] text-sm">{user.district}</span>
                           </div>
                         </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+  <div className="flex items-center space-x-2">
+    <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+      <CakeSlice className="w-3 h-3 text-[#8e1b3a]" />
+    </div>
+    <span className="font-medium text-[#9f405b] text-sm">
+      {user.dateOfBirth
+        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "N/A"}
+    </span>
+  </div>
+</td>
+
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center space-x-2">
                             <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
@@ -831,6 +859,9 @@ const AdminDashboard = () => {
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-bold text-[#8e1b3a] uppercase tracking-wider">
                         Contact & Location
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-bold text-[#8e1b3a] uppercase tracking-wider">
+                        Date Of Birth
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-bold text-[#8e1b3a] uppercase tracking-wider">
                         Date
@@ -868,12 +899,34 @@ const AdminDashboard = () => {
                             <div className="flex items-center space-x-2 text-xs text-[#8e1b3a]">
                               <Phone className="w-3 h-3" />
                               <span className="font-medium">{user.mobileNumber}</span>
+    {/* <span className="font-medium">• WhatsApp: {user.whatsappNumber}</span> */}
+    <div className="flex items-center space-x-2 text-[#8e1b3a]">
+  <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+    <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
+  </div>
+  <span className="font-medium">{user.whatsappNumber}</span>
+</div>
+
+
+
                             </div>
                             <div className="flex items-center space-x-2 text-xs text-[#8e1b3a]">
                               <MapPin className="w-3 h-3" />
                               <span className="font-semibold">{user.district}</span>
                             </div>
                           </div>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap">
+                        <span className="font-medium text-[#9f405b] text-xs">
+                          
+      {user.dateOfBirth
+        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "N/A"}
+    </span>
                         </td>
                         <td className="px-4 py-3 whitespace-nowrap">
                           <span className="font-medium text-[#9f405b] text-xs">{formatDate(user.createdAt)}</span>
@@ -914,11 +967,37 @@ const AdminDashboard = () => {
                           <div className="flex items-center space-x-2 text-xs">
                             <Phone className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
                             <span className="text-[#8e1b3a] font-medium">{user.mobileNumber}</span>
+    {/* <span className="font-medium text-[#8e1b3a]">• WhatsApp: {user.whatsappNumber}</span> */}
+    <div className="flex items-center space-x-2 text-[#8e1b3a]">
+  <div className="w-4 h-4 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+    <FaWhatsapp className="w-3 h-3 text-[#8e1b3a]" />
+  </div>
+  <span className="font-medium">{user.whatsappNumber}</span>
+</div>
+
                           </div>
                           <div className="flex items-center space-x-2 text-xs">
                             <MapPin className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
                             <span className="text-[#8e1b3a] font-semibold">{user.district}</span>
                           </div>
+                          
+                          <div className="flex items-center space-x-2 text-xs">
+                            {/* <Calendar className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" /> */}
+                            <CakeSlice className="w-3 h-3 text-[#8e1b3a]" />
+
+                            <span className="text-[#9f405b] font-medium">
+      {user.dateOfBirth
+        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "N/A"}
+    </span>
+                          </div>
+
+
+
                           <div className="flex items-center space-x-2 text-xs">
                             <Calendar className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
                             <span className="text-[#9f405b] font-medium">{formatDate(user.createdAt)}</span>
