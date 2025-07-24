@@ -286,7 +286,7 @@ const HeroSection = () => {
                   <li className="flex items-center gap-3">
                     <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
                     <span style={{ fontFamily: "Anek Malayalam Variable" }}>
-                      പ്രവാചകൻ മുഹമ്മദ് ﷺ
+                      പ്രവാചകൻ മുഹമ്മദ് 
                     </span>
                   </li>
                   <li className="flex items-center gap-3">
