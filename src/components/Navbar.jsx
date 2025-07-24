@@ -89,7 +89,8 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import logo from '../assets/dialouge-logo.png';
-import kinlogo from '../assets/kim-logo.png';
+// import kinlogo from '../assets/kim-logo.png';
+import kinlogo from '../assets/al_jamia_logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
