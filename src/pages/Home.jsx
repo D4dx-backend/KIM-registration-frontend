@@ -67,7 +67,7 @@ const HeroSection = () => {
         dateOfBirth: formData.dob,
         address: formData.address,
         district: formData.district,
-        email: formData.email || undefined, 
+        email: formData.email || undefined,
         mobileNumber: formData.mobile,
         whatsappNumber: formData.whatsapp || formData.mobile, // Use mobile as fallback
         age: parseInt(formData.age),
@@ -128,20 +128,19 @@ const HeroSection = () => {
   return (
     <div className="bg-[#FAF9F6]">
       <div className="bg-[#FAF9F6]">
-
-   <div className="py-8 bg-[#8e1b3a]">
-  <div
-    className="relative bg-auto bg-cover bg-center rounded-xl overflow-hidden w-full"
-    style={{ backgroundImage: `url(${newh})` }}
-  >
-    <img
-      src={newh}
-      alt="Banner"
-      className="w-full h-auto object-cover"
-    />
-  </div>
-</div>
-      {/* <div className="px-4 py-8 md:px-8 lg:px-16 bg-[#8e1b3a]">
+        <div className="py-8 bg-[#8e1b3a]">
+          <div
+            className="relative bg-auto bg-cover bg-center rounded-xl overflow-hidden w-full"
+            style={{ backgroundImage: `url(${newh})` }}
+          >
+            <img
+              src={newh}
+              alt="Banner"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        {/* <div className="px-4 py-8 md:px-8 lg:px-16 bg-[#8e1b3a]">
         <div
           className="relative bg-auto bg-cover bg-center rounded-xl overflow-hidden mx-auto max-w-7xl"
           style={{ backgroundImage: `url(${newh})` }}
@@ -153,124 +152,162 @@ const HeroSection = () => {
           />
         </div>
       </div> */}
-      <div
-        className="w-full h-[20px] bg-repeat-x"
-        style={{
-          backgroundImage: `url(${borderbtm})`,
-          backgroundSize: "auto 100%",
-        }}
-      ></div>
+        <div
+          className="w-full h-[20px] bg-repeat-x"
+          style={{
+            backgroundImage: `url(${borderbtm})`,
+            backgroundSize: "auto 100%",
+          }}
+        ></div>
 
-      {/* Course Info */}
-      {/* <div className="bg-[#FAF9F6]"> */}
-      <div className="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-2xl mt-10 border border-gray-200 relative z-10">
-        <div className="bg-white">
+        {/* Course Info */}
+        {/* <div className="bg-[#FAF9F6]"> */}
+        <div className="max-w-6xl mx-auto px-6 py-12 bg-white rounded-3xl shadow-2xl mt-10 border border-gray-200 relative z-10">
+          <div className="bg-white">
+            <div className="text-center mb-12">
+              <h2 className="text-xl md:text-2xl font-semibold text-[#8e1b3a] uppercase tracking-widest">
+                Al Jamia Al Islamiya presents
+              </h2>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 leading-tight">
+                3- Month Online Course on
+                <br />
+                UNDERSTANDING ISLAM
+              </h1>
+            </div>
 
-        <div className="text-center mb-12">
-          <h2 className="text-xl md:text-2xl font-semibold text-[#8e1b3a] uppercase tracking-widest">
-            Al Jamia Al Islamia Presents
-          </h2>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-4 leading-tight">
-            Understanding Islam
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 mt-3">
-            A 3-Month Comprehensive Online Course
-          </p>
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Features */}
+              <div className="bg-gradient-to-br from-[#fde6ec] to-[#fff9fa] hover:from-[#f5f7fa] to-[#ffffff] p-8 rounded-2xl shadow-lg border border-[#f9e2e8]">
+                <h3
+                  className="text-2xl font-bold text-[#8e1b3a] mb-6 flex items-center gap-3"
+                  style={{ fontFamily: "Anek Malayalam Variable" }}
+                >
+                  <GraduationCap className="w-6 h-6" />
+                  🎓 കോഴ്സ് സവിശേഷതകൾ
+                </h3>
+                <ul className="space-y-3 text-gray-700 text-[15.5px] font-medium">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ഓരോ ആഴ്ചയും ഒരു വിഷയത്തിൽ കേന്ദ്രികരിച്ച പഠനം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      റെക്കോർഡഡ് വീഡിയോ ക്ലിപ്പുകൾ വഴി പഠനം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ഓരോ ആഴ്ചയിലും ഒരു ലൈവ് സെഷൻ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      പരിചയ സമ്പന്നരായ ഫാക്കൽറ്റികളുടെ ക്ലാസുകൾ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ക്ലാസുകളോടൊപ്പം നോട്ടുകൾ ലഭ്യമാകും
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      കോഴ്സ് അവസാനം ഓൺലൈൻ പരീക്ഷ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      വിജയകരമായി പൂർത്തിയാക്കിയവർക്ക് സർട്ടിഫിക്കറ്റ്
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Features */}
-          <div className="bg-gradient-to-br from-[#fde6ec] to-[#fff9fa] hover:from-[#f5f7fa] to-[#ffffff] p-8 rounded-2xl shadow-lg border border-[#f9e2e8]">
-            <h3 className="text-2xl font-bold text-[#8e1b3a] mb-6 flex items-center gap-3">
-              <GraduationCap className="w-6 h-6" />
-              Course Features
-            </h3>
-            <ul className="space-y-3 text-gray-700 text-[15.5px] font-medium">
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Weekly topic-focused study</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>High-quality recorded video lessons</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Live Q&A sessions every week</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Concise notes alongside every class</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Sessions by expert faculty members</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Final online examination</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#8e1b3a] flex-shrink-0" />
-                <span>Certificate upon successful completion</span>
-              </li>
-            </ul>
+              {/* Topics */}
+              <div className="bg-gradient-to-br from-[#f5f7fa] to-[#ffffff] hover:from-[#fde6ec] to-[#fff9fa] p-8 rounded-2xl shadow-lg border border-gray-200">
+                <h3
+                  className="text-2xl font-bold text-[#8e1b3a] mb-6 flex items-center gap-3"
+                  style={{ fontFamily: "Anek Malayalam Variable" }}
+                >
+                  <BookOpen className="w-6 h-6" />
+                  📚 വിഷയങ്ങൾ
+                </h3>
+                <ul className="space-y-3 text-gray-700 text-[15.5px] font-medium">
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ദൈവ വിശ്വാസം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      പ്രവാചകത്വം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      മരണാനന്തര ജീവിതം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      അനുഷ്‌ഠാന കാര്യങ്ങൾ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      കുടുംബവ്യവസ്ഥ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ഇസ്ലാമിന്റെ വിമോചന സന്ദേശം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      പ്രവാചകന്മാരുടെ ചരിത്രം
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      പ്രവാചകൻ മുഹമ്മദ് ﷺ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      ഇസ്ലാമിന്റെ നാഗരിക സംഭാവനകൾ
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
+                    <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                      വിശ്വാസവും ജീവിത മൂല്യങ്ങളും
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-
-          {/* Topics */}
-          <div className="bg-gradient-to-br from-[#f5f7fa] to-[#ffffff] hover:from-[#fde6ec] to-[#fff9fa] p-8 rounded-2xl shadow-lg border border-gray-200">
-            <h3 className="text-2xl font-bold text-[#8e1b3a] mb-6 flex items-center gap-3">
-              <BookOpen className="w-6 h-6" />
-              Topics Covered
-            </h3>
-            <ul className="space-y-3 text-gray-700 text-[15.5px] font-medium">
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Belief in God</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Prophethood</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Life after Death</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Ritual Practices</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Family System</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Islam's Liberating Message</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>History of Prophets</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Prophet Muhammad ﷺ</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Islamic Contributions to Civilization</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
-                <span>Faith and Ethical Values</span>
-              </li>
-            </ul>
-          </div>
-        </div>
         </div>
 
-        {/* CTA Button */}
-        {/* <div className="text-center mt-12 space-y-4">
+        <div className="text-center mt-12 space-y-4">
           <button
             onClick={() => {
               setShowForm(true);
@@ -289,73 +326,29 @@ const HeroSection = () => {
           <div className="text-[#8e1b3a] text-sm mt-3 space-y-1">
             <p className="flex items-center justify-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>
-  For more details:{" "}
-  <a href="tel:8606529689" className="font-semibold text-[#8e1b3a] hover:underline">
-    8606529689
-  </a>
-</span>
-
+              <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                📞 കൂടുതൽ വിവരങ്ങൾക്ക്:{" "}
+                <a
+                  href="tel:8606529689"
+                  className="font-semibold text-[#8e1b3a] hover:underline"
+                >
+                  8606529689
+                </a>
+              </span>
             </p>
             <p className="flex items-center justify-center gap-2">
               <MessageCircle className="w-4 h-4" />
-              <span>
-  WhatsApp:{" "}
-  <a
-    href="https://wa.me/918606529687"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="font-semibold text-[#8e1b3a] hover:underline"
-  >
-    8606529687
-  </a>
-</span>
-
-            </p>
-          </div>
-        </div> */}
-      </div>
-      <div className="text-center mt-12 space-y-4">
-          <button
-            onClick={() => {
-              setShowForm(true);
-              setTimeout(() => {
-                const section = document.getElementById("reg");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                }
-              }, 100); // small delay to wait for the form to render
-            }}
-            className="cursor-pointer inline-flex items-center gap-3 bg-gradient-to-r from-[#8e1b3a] to-[#c44563] text-white text-lg font-semibold px-10 py-4 rounded-full shadow-md hover:from-[#73132f] hover:to-[#a6324c] transition duration-200"
-          >
-            <FileText className="w-5 h-5" />
-            Register Now
-          </button>
-          <div className="text-[#8e1b3a] text-sm mt-3 space-y-1">
-            <p className="flex items-center justify-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>
-  For more details:{" "}
-  <a href="tel:8606529689" className="font-semibold text-[#8e1b3a] hover:underline">
-    8606529689
-  </a>
-</span>
-
-            </p>
-            <p className="flex items-center justify-center gap-2">
-              <MessageCircle className="w-4 h-4" />
-              <span>
-  WhatsApp:{" "}
-  <a
-    href="https://wa.me/918606529687"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="font-semibold text-[#8e1b3a] hover:underline"
-  >
-    8606529687
-  </a>
-</span>
-
+              <span style={{ fontFamily: "Anek Malayalam Variable" }}>
+                വാട്സ്ആപ്പ്:{" "}
+                <a
+                  href="https://wa.me/918606529689"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#8e1b3a] hover:underline"
+                >
+                  8606529689
+                </a>
+              </span>
             </p>
           </div>
         </div>
@@ -477,36 +470,35 @@ const HeroSection = () => {
             </div>
 
             {/* District */}
-           {/* District */}
-<div>
-  <label className="block text-sm font-medium text-[#8e1b3a]">
-    District<span className="text-red-600">*</span>
-  </label>
-  <select
-    name="district"
-    value={formData.district}
-    onChange={handleChange}
-    required
-    className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none border-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9]"
-  >
-    <option value="">Select District</option>
-    <option value="Alappuzha">Alappuzha</option>
-    <option value="Ernakulam">Ernakulam</option>
-    <option value="Idukki">Idukki</option>
-    <option value="Kannur">Kannur</option>
-    <option value="Kasaragod">Kasaragod</option>
-    <option value="Kollam">Kollam</option>
-    <option value="Kottayam">Kottayam</option>
-    <option value="Kozhikode">Kozhikode</option>
-    <option value="Malappuram">Malappuram</option>
-    <option value="Palakkad">Palakkad</option>
-    <option value="Pathanamthitta">Pathanamthitta</option>
-    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-    <option value="Thrissur">Thrissur</option>
-    <option value="Wayanad">Wayanad</option>
-  </select>
-</div>
-
+            {/* District */}
+            <div>
+              <label className="block text-sm font-medium text-[#8e1b3a]">
+                District<span className="text-red-600">*</span>
+              </label>
+              <select
+                name="district"
+                value={formData.district}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none border-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9]"
+              >
+                <option value="">Select District</option>
+                <option value="Alappuzha">Alappuzha</option>
+                <option value="Ernakulam">Ernakulam</option>
+                <option value="Idukki">Idukki</option>
+                <option value="Kannur">Kannur</option>
+                <option value="Kasaragod">Kasaragod</option>
+                <option value="Kollam">Kollam</option>
+                <option value="Kottayam">Kottayam</option>
+                <option value="Kozhikode">Kozhikode</option>
+                <option value="Malappuram">Malappuram</option>
+                <option value="Palakkad">Palakkad</option>
+                <option value="Pathanamthitta">Pathanamthitta</option>
+                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="Thrissur">Thrissur</option>
+                <option value="Wayanad">Wayanad</option>
+              </select>
+            </div>
 
             {/* Email */}
             <div>
@@ -518,26 +510,24 @@ const HeroSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-
                 className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none border-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9]"
               />
             </div>
 
             {/* Mobile Number */}
             <div>
-  <label className="block text-sm font-medium text-[#8e1b3a]">
-    Mobile Number <span className="text-red-600">*</span>
-  </label>
-  <input
-    type="tel"
-    name="mobile"
-    value={formData.mobile}
-    onChange={handleChange}
-    required
-    className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none border-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9]"
-  />
-</div>
-
+              <label className="block text-sm font-medium text-[#8e1b3a]">
+                Mobile Number <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="tel"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                required
+                className="input mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none border-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9]"
+              />
+            </div>
 
             {/* WhatsApp Number */}
             <div>
@@ -609,7 +599,7 @@ const HeroSection = () => {
           </form>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </div>
   );
 };
