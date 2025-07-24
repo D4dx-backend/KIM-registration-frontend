@@ -67,9 +67,9 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="bg-gray-800 rounded-2xl p-8 shadow-2xl">
+        <div className="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(63,9,23,0.5)] border border-[#3f0917]">
           {/* Logo */}
           <div className="flex justify-center mb-8">
             {/* <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
@@ -78,7 +78,7 @@ const AdminLogin = () => {
           </div>
 
           {/* Title */}
-          <h2 className="text-white text-xl font-semibold text-center mb-8">
+          <h2 className="text-[#8e1b3a] text-xl font-semibold text-center mb-8">
             Admin Login
           </h2>
 
@@ -93,13 +93,13 @@ const AdminLogin = () => {
           <form onSubmit={handleSubmit}>
             {/* Email Field */}
             <div className="mb-4">
-              <label className="block text-gray-400 text-sm mb-2">Email</label>
+              <label className="block text-[#8e1b3a] text-sm mb-2">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-transparent border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-colors"
+                className="w-full bg-transparent border border-[#8e1b3a] rounded-lg px-4 py-3 text-[#8e1b3a] placeholder-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9] focus:outline-none focus:ring-1  transition-colors"
                 placeholder="Enter your email"
                 required
               />
@@ -107,21 +107,21 @@ const AdminLogin = () => {
 
             {/* Password Field */}
             <div className="mb-6">
-              <label className="block text-gray-400 text-sm mb-2">Password</label>
+              <label className="block text-[#8e1b3a] text-sm mb-2">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full bg-transparent border border-gray-600 rounded-lg px-4 py-3 pr-12 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-colors"
+                  className="w-full bg-transparent border border-[#8e1b3a] rounded-lg px-4 py-3 pr-12 text-[#8e1b3a] placeholder-[#8e1b3a] focus:ring-[#8e1b3a] focus:border-[#d29aa9] focus:outline-none focus:ring-1  transition-colors"
                   placeholder="Enter your password"
                   required
                 />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300 transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#8e1b3a] hover:text-[#a86779] transition-colors"
                 >
                   {showPassword ? (
                     <EyeOff className="w-5 h-5" />
@@ -136,7 +136,10 @@ const AdminLogin = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white font-semibold py-3 px-4 rounded-lg hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full  text-white font-semibold py-3 px-4 rounded-lg hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              style={{
+                background: 'linear-gradient(to right, #8e1b3a, #9f405b, #e64271)',
+              }}
             >
               {isLoading ? (
                 <>
@@ -151,17 +154,26 @@ const AdminLogin = () => {
 
           {/* Divider */}
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-gray-600"></div>
-            <div className="px-4 text-gray-400 text-sm">OR</div>
-            <div className="flex-1 border-t border-gray-600"></div>
+            <div className="flex-1 border-t border-[#8e1b3a]"></div>
+            <div className="px-4 text-[#8e1b3a] text-sm">OR</div>
+            <div className="flex-1 border-t border-[#8e1b3a]"></div>
           </div>
           
-          <button
+          {/* <button
             onClick={() => navigate('/')}
-            className="w-full bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+            className="w-full bg-[#6a7cdf] text-white font-semibold py-3 px-4 rounded-lg hover:bg-[#3d446d] focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
           >
             <span>Back to home</span>
-          </button>
+          </button> */}
+          <button
+  onClick={() => navigate('/')}
+  className="w-full text-white font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+  style={{
+    background: 'linear-gradient(to right, #ca7e93, #9f405b, #3f0917)', // cool violet gradient
+  }}
+>
+  <span>Back to home</span>
+</button>
         </div>
       </div>
     </div>
