@@ -6,8 +6,6 @@
 // import kinlogo from '../assets/kim-logo.png';
 // import Footer from '../components/Footer';
 
-
-
 // const AdminDashboard = () => {
 //   const [users, setUsers] = useState([]);
 //   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +18,7 @@
 //   const indexOfFirstUser = indexOfLastUser - usersPerPage;
 //   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 //   const totalPages = Math.ceil(users.length / usersPerPage);
-    
+
 //   useEffect(() => {
 //     // Check if admin token exists
 //     const token = localStorage.getItem('adminToken');
@@ -132,7 +130,7 @@
 //   }
 
 //   return (
-    
+
 //     <div className="min-h-screen ">
 //       {/* Header */}
 //       <header className="relative overflow-hidden">
@@ -187,13 +185,13 @@
 //               </div>
 //             </div>
 //           </div>
-          
+
 //           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl border border-[#e64271]/10 hover:shadow-2xl transition-all duration-300">
 //             <div className="flex items-center justify-between">
 //               <div>
 //                 <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider">New Today</p>
 //                 <p className="text-2xl sm:text-3xl font-bold text-[#8e1b3a] mt-1 sm:mt-2">
-//                   {users.filter(user => 
+//                   {users.filter(user =>
 //                     new Date(user.createdAt).toDateString() === new Date().toDateString()
 //                   ).length}
 //                 </p>
@@ -203,7 +201,7 @@
 //               </div>
 //             </div>
 //           </div>
-          
+
 //           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl border border-[#e64271]/10 hover:shadow-2xl transition-all duration-300 sm:col-span-2 lg:col-span-1">
 //             <div className="flex items-center justify-between">
 //               <div>
@@ -258,7 +256,7 @@
 //               </button>
 //             </div>
 //           </div>
-          
+
 //           {users.length === 0 ? (
 //             <div className="p-8 sm:p-16 text-center">
 //               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-[#8e1b3a]/10 to-[#e64271]/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
@@ -369,7 +367,7 @@
 //                             Age: {user.age} • {user.gender}
 //                           </p>
 //                         </div>
-                        
+
 //                         <div className="space-y-2">
 //                           <div className="flex items-center space-x-2 text-xs sm:text-sm">
 //                             <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-[#8e1b3a] flex-shrink-0" />
@@ -416,7 +414,7 @@
 //       Next
 //     </button>
 //   </div>
-  
+
 // )}
 
 //         </div>
@@ -429,14 +427,25 @@
 
 // export default AdminDashboard;
 
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Download,
+  LogOut,
+  Users,
+  Home,
+  Eye,
+  Mail,
+  Phone,
+  Calendar,
+  MapPin,
+} from "lucide-react";
+import axios from "axios";
+import logo from "../assets/kim-logo.png";
+// import kinlogo from '../assets/kim-logo.png';
+import kinlogo from "../assets/al_jamia_logo.png";
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Download, LogOut, Users, Home, Eye, Mail, Phone, Calendar, MapPin } from 'lucide-react';
-import axios from 'axios';
-import logo from '../assets/kim-logo.png';
-import kinlogo from '../assets/kim-logo.png';
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 import { CakeSlice } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -444,7 +453,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [downloadLoading, setDownloadLoading] = useState(false);
-  const [downloadStatus, setDownloadStatus] = useState('');
+  const [downloadStatus, setDownloadStatus] = useState("");
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
@@ -455,9 +464,9 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Check if admin token exists
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem("adminToken");
     if (!token) {
-      navigate('/admin-login');
+      navigate("/admin-login");
       return;
     }
 
@@ -467,22 +476,22 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem("adminToken");
       const response = await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/api/admin/users`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       );
       setUsers(response.data);
     } catch (err) {
-      console.error('Error fetching users:', err);
+      console.error("Error fetching users:", err);
       if (err.response?.status === 401) {
-        localStorage.removeItem('adminToken');
-        navigate('/admin-login');
+        localStorage.removeItem("adminToken");
+        navigate("/admin-login");
       }
     } finally {
       setIsLoading(false);
@@ -490,50 +499,53 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    navigate('/admin-login');
+    localStorage.removeItem("adminToken");
+    navigate("/admin-login");
   };
 
   const handleDownloadUsers = async () => {
     setDownloadLoading(true);
-    setDownloadStatus('');
+    setDownloadStatus("");
 
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem("adminToken");
       const response = await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/api/admin/download-users`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-          responseType: 'blob'
+          responseType: "blob",
         }
       );
 
       // Create download link
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `registered_students_${new Date().toISOString().split('T')[0]}.xlsx`);
+      link.setAttribute(
+        "download",
+        `registered_students_${new Date().toISOString().split("T")[0]}.xlsx`
+      );
       document.body.appendChild(link);
       link.click();
       link.remove();
       window.URL.revokeObjectURL(url);
 
-      setDownloadStatus('Download completed successfully!');
-      setTimeout(() => setDownloadStatus(''), 3000);
+      setDownloadStatus("Download completed successfully!");
+      setTimeout(() => setDownloadStatus(""), 3000);
     } catch (err) {
-      console.error('Download error:', err);
+      console.error("Download error:", err);
       if (err.response?.status === 401) {
-        setDownloadStatus('Unauthorized. Please login again.');
+        setDownloadStatus("Unauthorized. Please login again.");
         setTimeout(() => {
-          localStorage.removeItem('adminToken');
-          navigate('/admin-login');
+          localStorage.removeItem("adminToken");
+          navigate("/admin-login");
         }, 2000);
       } else {
-        setDownloadStatus('Download failed. Please try again.');
-        setTimeout(() => setDownloadStatus(''), 3000);
+        setDownloadStatus("Download failed. Please try again.");
+        setTimeout(() => setDownloadStatus(""), 3000);
       }
     } finally {
       setDownloadLoading(false);
@@ -541,10 +553,10 @@ const AdminDashboard = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -557,7 +569,9 @@ const AdminDashboard = () => {
             <div className="absolute inset-2 bg-gradient-to-r from-[#8e1b3a] to-[#e64271] rounded-full animate-pulse"></div>
             <div className="absolute inset-4 bg-white rounded-full"></div>
           </div>
-          <p className="text-[#8e1b3a] font-medium text-sm xs:text-base sm:text-lg">Loading registered users...</p>
+          <p className="text-[#8e1b3a] font-medium text-sm xs:text-base sm:text-lg">
+            Loading registered users...
+          </p>
         </div>
       </div>
     );
@@ -598,40 +612,122 @@ const AdminDashboard = () => {
           </div>
         </div>
       </header> */}
-            <header className="relative overflow-hidden">
+      <header className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#8e1b3a] via-[#9f405b] to-[#e64271]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 sm:py-6 space-y-4 sm:space-y-0">
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              <div className="w-auto h-15 sm:w-auto sm:h-15  rounded-xl flex items-center justify-center ">
-                {/* <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" /> */}
-              <img src={logo} alt="Masjid Council Kerala" className="h-15 w-auto " />
-
+          {/* Mobile Layout */}
+          <div className="flex flex-col space-y-4 py-4 sm:hidden">
+            {/* Top row: Logo and buttons */}
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-2">
+                <div className="w-auto h-10 rounded-xl flex items-center justify-center">
+                  <img
+                    src={kinlogo}
+                    alt="Masjid Council Kerala"
+                    className="h-10 w-auto"
+                  />
+                </div>
               </div>
-              {/* <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Admin Dashboard</h1> */}
-              {/* <h1 className="text-[25px] font-bold text-white tracking-tight mt-5">
-  Admin Dashboard
-</h1> */}
-<h1 className="text-sm sm:text-base md:text-lg lg:text-[25px] font-bold text-white tracking-tight mt-9 ">
-  Admin Dashboard
-</h1>
-
-
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={() => navigate("/")}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-lg border border-white/20 hover:border-white/40 text-xs"
+                >
+                  <Home className="w-3 h-3" />
+                  <span className="font-medium">Home</span>
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-lg border border-white/20 hover:border-white/40 text-xs"
+                >
+                  <LogOut className="w-3 h-3" />
+                  <span className="font-medium">Logout</span>
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
+
+            {/* Bottom row: Centered title */}
+            <div className="flex justify-center">
+              <h1 className="text-lg font-bold text-white tracking-tight">
+                Admin Dashboard
+              </h1>
+            </div>
+          </div>
+
+          {/* Tablet Layout */}
+          <div className="hidden sm:flex md:hidden relative justify-between items-center py-5">
+            {/* Logo section */}
+            <div className="flex items-center space-x-3">
+              <div className="w-auto h-12 rounded-xl flex items-center justify-center">
+                <img
+                  src={kinlogo}
+                  alt="Masjid Council Kerala"
+                  className="h-12 w-auto"
+                />
+              </div>
+            </div>
+
+            {/* Centered title */}
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <h1 className="text-xl font-bold text-white tracking-tight whitespace-nowrap">
+                Admin Dashboard
+              </h1>
+            </div>
+
+            {/* Buttons section */}
+            <div className="flex items-center space-x-2">
               <button
-                onClick={() => navigate('/')}
-                className="flex items-center justify-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-sm sm:text-base"
+                onClick={() => navigate("/")}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-sm"
               >
-                <Home className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Home className="w-4 h-4" />
                 <span className="font-medium">Home</span>
               </button>
               <button
                 onClick={handleLogout}
-                className="flex items-center justify-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-sm sm:text-base"
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-sm"
               >
-                <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
+                <LogOut className="w-4 h-4" />
+                <span className="font-medium">Logout</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:flex relative justify-between items-center py-6">
+            {/* Logo section */}
+            <div className="flex items-center space-x-4">
+              <div className="w-auto h-15 rounded-xl flex items-center justify-center">
+                <img
+                  src={kinlogo}
+                  alt="Masjid Council Kerala"
+                  className="h-15 w-auto"
+                />
+              </div>
+            </div>
+
+            {/* Absolutely centered title */}
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <h1 className="text-2xl lg:text-3xl xl:text-[25px] font-bold text-white tracking-tight whitespace-nowrap">
+                Admin Dashboard
+              </h1>
+            </div>
+
+            {/* Buttons section */}
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => navigate("/")}
+                className="flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-base"
+              >
+                <Home className="w-5 h-5" />
+                <span className="font-medium">Home</span>
+              </button>
+              <button
+                onClick={handleLogout}
+                className="flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 rounded-xl border border-white/20 hover:border-white/40 text-base"
+              >
+                <LogOut className="w-5 h-5" />
                 <span className="font-medium">Logout</span>
               </button>
             </div>
@@ -646,23 +742,33 @@ const AdminDashboard = () => {
           <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-[#e64271]/10 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div className="min-w-0 flex-1 mr-2">
-                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">Total Students</p>
-                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#8e1b3a] mt-1 sm:mt-2">{users.length}</p>
+                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">
+                  Total Students
+                </p>
+                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#8e1b3a] mt-1 sm:mt-2">
+                  {users.length}
+                </p>
               </div>
               <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-[#8e1b3a] to-[#e64271] rounded-lg xs:rounded-xl flex items-center justify-center flex-shrink-0">
                 <Users className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 text-white" />
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-[#e64271]/10 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div className="min-w-0 flex-1 mr-2">
-                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">New Today</p>
+                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">
+                  New Today
+                </p>
                 <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#8e1b3a] mt-1 sm:mt-2">
-                  {users.filter(user => 
-                    new Date(user.createdAt).toDateString() === new Date().toDateString()
-                  ).length}
+                  {
+                    users.filter(
+                      (user) =>
+                        new Date(user.createdAt).toDateString() ===
+                        new Date().toDateString()
+                    ).length
+                  }
                 </p>
               </div>
               <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-[#9f405b] to-[#e64271] rounded-lg xs:rounded-xl flex items-center justify-center flex-shrink-0">
@@ -670,13 +776,15 @@ const AdminDashboard = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-[#e64271]/10 hover:shadow-2xl transition-all duration-300 xs:col-span-2 lg:col-span-1">
             <div className="flex items-center justify-between">
               <div className="min-w-0 flex-1 mr-2">
-                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">Districts</p>
+                <p className="text-xs sm:text-sm font-medium text-[#9f405b] uppercase tracking-wider truncate">
+                  Districts
+                </p>
                 <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#8e1b3a] mt-1 sm:mt-2">
-                  {new Set(users.map(user => user.district)).size}
+                  {new Set(users.map((user) => user.district)).size}
                 </p>
               </div>
               <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-[#e64271] to-[#8e1b3a] rounded-lg xs:rounded-xl flex items-center justify-center flex-shrink-0">
@@ -702,7 +810,9 @@ const AdminDashboard = () => {
                 <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#8e1b3a] to-[#e64271] rounded-md xs:rounded-lg flex items-center justify-center">
                   <Users className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
-                <h2 className="text-base xs:text-lg sm:text-xl font-bold text-[#8e1b3a]">Registered Students</h2>
+                <h2 className="text-base xs:text-lg sm:text-xl font-bold text-[#8e1b3a]">
+                  Registered Students
+                </h2>
               </div>
 
               {/* Right section: Download button */}
@@ -725,14 +835,18 @@ const AdminDashboard = () => {
               </button>
             </div>
           </div>
-          
+
           {users.length === 0 ? (
             <div className="p-6 xs:p-8 sm:p-16 text-center">
               <div className="w-12 h-12 xs:w-16 xs:h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-[#8e1b3a]/10 to-[#e64271]/10 rounded-full flex items-center justify-center mx-auto mb-3 xs:mb-4 sm:mb-6">
                 <Users className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 text-[#9f405b]" />
               </div>
-              <h3 className="text-base xs:text-lg sm:text-xl font-semibold text-[#8e1b3a] mb-2">No Students Yet</h3>
-              <p className="text-[#9f405b] text-sm sm:text-base">Students will appear here once they start registering.</p>
+              <h3 className="text-base xs:text-lg sm:text-xl font-semibold text-[#8e1b3a] mb-2">
+                No Students Yet
+              </h3>
+              <p className="text-[#9f405b] text-sm sm:text-base">
+                Students will appear here once they start registering.
+              </p>
             </div>
           ) : (
             <>
@@ -760,13 +874,17 @@ const AdminDashboard = () => {
                   </thead>
                   <tbody className="bg-white/50 divide-y divide-[#e64271]/10">
                     {currentUsers.map((user, index) => (
-                      <tr key={user._id || index} className="hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300 group">
+                      <tr
+                        key={user._id || index}
+                        className="hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300 group"
+                      >
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="flex-shrink-0 h-12 w-12">
                               <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-[#8e1b3a] to-[#e64271] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                                 <span className="text-white font-bold text-base">
-                                  {user.fullName?.charAt(0)?.toUpperCase() || 'U'}
+                                  {user.fullName?.charAt(0)?.toUpperCase() ||
+                                    "U"}
                                 </span>
                               </div>
                             </div>
@@ -786,27 +904,35 @@ const AdminDashboard = () => {
                               <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
                                 <Mail className="w-3 h-3 text-[#8e1b3a]" />
                               </div>
-                              <span className="font-medium text-sm">{user.email}</span>
+                              <span className="font-medium text-sm">
+                                {user.email}
+                              </span>
                             </div>
                             <div className="flex items-center space-x-2 text-[#8e1b3a]">
                               <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
                                 <Phone className="w-3 h-3 text-[#8e1b3a]" />
                               </div>
-                              {user.whatsappNumber && user.whatsappNumber !== user.mobileNumber ? (
-  <>
-    <span className="font-medium text-sm">{user.mobileNumber}</span>
-    {/* <span className="font-medium text-sm">• WhatsApp: {user.whatsappNumber}</span> */}
-    <div className="flex items-center space-x-2 text-[#8e1b3a]">
-  <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
-    <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
-  </div>
-  <span className="font-medium">{user.whatsappNumber}</span>
-</div>
-  </>
-) : (
-  <span className="font-medium text-sm">Mobile & WhatsApp: {user.mobileNumber}</span>
-)}
-
+                              {user.whatsappNumber &&
+                              user.whatsappNumber !== user.mobileNumber ? (
+                                <>
+                                  <span className="font-medium text-sm">
+                                    {user.mobileNumber}
+                                  </span>
+                                  {/* <span className="font-medium text-sm">• WhatsApp: {user.whatsappNumber}</span> */}
+                                  <div className="flex items-center space-x-2 text-[#8e1b3a]">
+                                    <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+                                      <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
+                                    </div>
+                                    <span className="font-medium">
+                                      {user.whatsappNumber}
+                                    </span>
+                                  </div>
+                                </>
+                              ) : (
+                                <span className="font-medium text-sm">
+                                  Mobile & WhatsApp: {user.mobileNumber}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </td>
@@ -815,32 +941,39 @@ const AdminDashboard = () => {
                             <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
                               <MapPin className="w-3 h-3 text-[#8e1b3a]" />
                             </div>
-                            <span className="font-semibold text-[#8e1b3a] text-sm">{user.district}</span>
+                            <span className="font-semibold text-[#8e1b3a] text-sm">
+                              {user.district}
+                            </span>
+                          </div>
+                        </td>   
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+                              <CakeSlice className="w-3 h-3 text-[#8e1b3a]" />
+                            </div>
+                            <span className="font-medium text-[#9f405b] text-sm">
+                              {user.dateOfBirth
+                                ? new Date(user.dateOfBirth).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                      day: "2-digit",
+                                      month: "short",
+                                      year: "numeric",
+                                    }
+                                  )
+                                : "N/A"}
+                            </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-  <div className="flex items-center space-x-2">
-    <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
-      <CakeSlice className="w-3 h-3 text-[#8e1b3a]" />
-    </div>
-    <span className="font-medium text-[#9f405b] text-sm">
-      {user.dateOfBirth
-        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })
-        : "N/A"}
-    </span>
-  </div>
-</td>
 
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center space-x-2">
                             <div className="w-6 h-6 bg-gradient-to-r from-[#e64271]/20 to-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
                               <Calendar className="w-3 h-3 text-[#8e1b3a]" />
                             </div>
-                            <span className="font-medium text-[#9f405b] text-sm">{formatDate(user.createdAt)}</span>
+                            <span className="font-medium text-[#9f405b] text-sm">
+                              {formatDate(user.createdAt)}
+                            </span>
                           </div>
                         </td>
                       </tr>
@@ -870,13 +1003,17 @@ const AdminDashboard = () => {
                   </thead>
                   <tbody className="bg-white/50 divide-y divide-[#e64271]/10">
                     {currentUsers.map((user, index) => (
-                      <tr key={user._id || index} className="hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300 group">
+                      <tr
+                        key={user._id || index}
+                        className="hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300 group"
+                      >
                         <td className="px-4 py-3 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="flex-shrink-0 h-10 w-10">
                               <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-[#8e1b3a] to-[#e64271] flex items-center justify-center shadow-lg">
                                 <span className="text-white font-bold text-sm">
-                                  {user.fullName?.charAt(0)?.toUpperCase() || 'U'}
+                                  {user.fullName?.charAt(0)?.toUpperCase() ||
+                                    "U"}
                                 </span>
                               </div>
                             </div>
@@ -894,42 +1031,51 @@ const AdminDashboard = () => {
                           <div className="space-y-1">
                             <div className="flex items-center space-x-2 text-xs text-[#8e1b3a]">
                               <Mail className="w-3 h-3" />
-                              <span className="font-medium truncate max-w-[150px]">{user.email}</span>
+                              <span className="font-medium truncate max-w-[150px]">
+                                {user.email}
+                              </span>
                             </div>
                             <div className="flex items-center space-x-2 text-xs text-[#8e1b3a]">
                               <Phone className="w-3 h-3" />
-                              <span className="font-medium">{user.mobileNumber}</span>
-    {/* <span className="font-medium">• WhatsApp: {user.whatsappNumber}</span> */}
-    <div className="flex items-center space-x-2 text-[#8e1b3a]">
-  <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
-    <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
-  </div>
-  <span className="font-medium">{user.whatsappNumber}</span>
-</div>
-
-
-
+                              <span className="font-medium">
+                                {user.mobileNumber}
+                              </span>
+                              {/* <span className="font-medium">• WhatsApp: {user.whatsappNumber}</span> */}
+                              <div className="flex items-center space-x-2 text-[#8e1b3a]">
+                                <div className="w-6 h-6 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+                                  <FaWhatsapp className="w-4 h-4 text-[#8e1b3a]" />
+                                </div>
+                                <span className="font-medium">
+                                  {user.whatsappNumber}
+                                </span>
+                              </div>
                             </div>
                             <div className="flex items-center space-x-2 text-xs text-[#8e1b3a]">
                               <MapPin className="w-3 h-3" />
-                              <span className="font-semibold">{user.district}</span>
+                              <span className="font-semibold">
+                                {user.district}
+                              </span>
                             </div>
                           </div>
                         </td>
                         <td className="px-4 py-3 whitespace-nowrap">
-                        <span className="font-medium text-[#9f405b] text-xs">
-                          
-      {user.dateOfBirth
-        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })
-        : "N/A"}
-    </span>
+                          <span className="font-medium text-[#9f405b] text-xs">
+                            {user.dateOfBirth
+                              ? new Date(user.dateOfBirth).toLocaleDateString(
+                                  "en-GB",
+                                  {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                  }
+                                )
+                              : "N/A"}
+                          </span>
                         </td>
                         <td className="px-4 py-3 whitespace-nowrap">
-                          <span className="font-medium text-[#9f405b] text-xs">{formatDate(user.createdAt)}</span>
+                          <span className="font-medium text-[#9f405b] text-xs">
+                            {formatDate(user.createdAt)}
+                          </span>
                         </td>
                       </tr>
                     ))}
@@ -940,12 +1086,15 @@ const AdminDashboard = () => {
               {/* Mobile Card View */}
               <div className="md:hidden divide-y divide-[#e64271]/10">
                 {currentUsers.map((user, index) => (
-                  <div key={user._id || index} className="p-3 xs:p-4 hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300">
+                  <div
+                    key={user._id || index}
+                    className="p-3 xs:p-4 hover:bg-gradient-to-r hover:from-[#8e1b3a]/5 hover:to-[#e64271]/5 transition-all duration-300"
+                  >
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
                         <div className="h-10 w-10 xs:h-12 xs:w-12 rounded-lg xs:rounded-xl bg-gradient-to-r from-[#8e1b3a] to-[#e64271] flex items-center justify-center shadow-lg">
                           <span className="text-white font-bold text-sm xs:text-base">
-                            {user.fullName?.charAt(0)?.toUpperCase() || 'U'}
+                            {user.fullName?.charAt(0)?.toUpperCase() || "U"}
                           </span>
                         </div>
                       </div>
@@ -958,49 +1107,59 @@ const AdminDashboard = () => {
                             Age: {user.age} • {user.gender}
                           </p>
                         </div>
-                        
+
                         <div className="space-y-1 xs:space-y-2">
                           <div className="flex items-center space-x-2 text-xs">
                             <Mail className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
-                            <span className="text-[#8e1b3a] font-medium truncate">{user.email}</span>
+                            <span className="text-[#8e1b3a] font-medium truncate">
+                              {user.email}
+                            </span>
                           </div>
                           <div className="flex items-center space-x-2 text-xs">
                             <Phone className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
-                            <span className="text-[#8e1b3a] font-medium">{user.mobileNumber}</span>
-    {/* <span className="font-medium text-[#8e1b3a]">• WhatsApp: {user.whatsappNumber}</span> */}
-    <div className="flex items-center space-x-2 text-[#8e1b3a]">
-  <div className="w-4 h-4 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
-    <FaWhatsapp className="w-3 h-3 text-[#8e1b3a]" />
-  </div>
-  <span className="font-medium">{user.whatsappNumber}</span>
-</div>
-
+                            <span className="text-[#8e1b3a] font-medium">
+                              {user.mobileNumber}
+                            </span>
+                            {/* <span className="font-medium text-[#8e1b3a]">• WhatsApp: {user.whatsappNumber}</span> */}
+                            <div className="flex items-center space-x-2 text-[#8e1b3a]">
+                              <div className="w-4 h-4 bg-[#8e1b3a]/20 rounded-lg flex items-center justify-center">
+                                <FaWhatsapp className="w-3 h-3 text-[#8e1b3a]" />
+                              </div>
+                              <span className="font-medium">
+                                {user.whatsappNumber}
+                              </span>
+                            </div>
                           </div>
                           <div className="flex items-center space-x-2 text-xs">
                             <MapPin className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
-                            <span className="text-[#8e1b3a] font-semibold">{user.district}</span>
+                            <span className="text-[#8e1b3a] font-semibold">
+                              {user.district}
+                            </span>
                           </div>
-                          
+
                           <div className="flex items-center space-x-2 text-xs">
                             {/* <Calendar className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" /> */}
                             <CakeSlice className="w-3 h-3 text-[#8e1b3a]" />
 
                             <span className="text-[#9f405b] font-medium">
-      {user.dateOfBirth
-        ? new Date(user.dateOfBirth).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })
-        : "N/A"}
-    </span>
+                              {user.dateOfBirth
+                                ? new Date(user.dateOfBirth).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                      day: "2-digit",
+                                      month: "short",
+                                      year: "numeric",
+                                    }
+                                  )
+                                : "N/A"}
+                            </span>
                           </div>
-
-
 
                           <div className="flex items-center space-x-2 text-xs">
                             <Calendar className="w-3 h-3 text-[#8e1b3a] flex-shrink-0" />
-                            <span className="text-[#9f405b] font-medium">{formatDate(user.createdAt)}</span>
+                            <span className="text-[#9f405b] font-medium">
+                              {formatDate(user.createdAt)}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -1015,7 +1174,7 @@ const AdminDashboard = () => {
           {users.length > usersPerPage && (
             <div className="flex flex-col xs:flex-row justify-center items-center p-4 xs:p-6 space-y-3 xs:space-y-0 xs:space-x-4 bg-gradient-to-r from-[#8e1b3a]/5 to-[#e64271]/5 border-t border-[#e64271]/10">
               <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
                 className="w-full xs:w-auto px-3 xs:px-4 py-2 rounded-lg xs:rounded-xl bg-gradient-to-r from-[#e64271] to-[#8e1b3a] text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-xs xs:text-sm transition-all duration-300 hover:shadow-lg"
               >
@@ -1025,7 +1184,9 @@ const AdminDashboard = () => {
                 Page {currentPage} of {totalPages}
               </span>
               <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
                 disabled={currentPage === totalPages}
                 className="w-full xs:w-auto px-3 xs:px-4 py-2 rounded-lg xs:rounded-xl bg-gradient-to-r from-[#e64271] to-[#8e1b3a] text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-xs xs:text-sm transition-all duration-300 hover:shadow-lg"
               >
@@ -1035,10 +1196,10 @@ const AdminDashboard = () => {
           )}
         </div>
       </main>
-      
+
       {/* Footer */}
       <div className="mt-8 xs:mt-12 sm:mt-16">
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );

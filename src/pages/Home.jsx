@@ -286,7 +286,7 @@ const HeroSection = () => {
                   <li className="flex items-center gap-3">
                     <Circle className="w-2 h-2 text-[#8e1b3a] flex-shrink-0" />
                     <span style={{ fontFamily: "Anek Malayalam Variable" }}>
-                      പ്രവാചകൻ മുഹമ്മദ് ﷺ
+                      പ്രവാചകൻ മുഹമ്മദ് 
                     </span>
                   </li>
                   <li className="flex items-center gap-3">
@@ -341,12 +341,14 @@ const HeroSection = () => {
               <span style={{ fontFamily: "Anek Malayalam Variable" }}>
                 വാട്സ്ആപ്പ്:{" "}
                 <a
-                  href="https://wa.me/918606529689"
+                  href="https://wa.me/918606529687
+"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#8e1b3a] hover:underline"
                 >
-                  8606529689
+                  8606529687
+
                 </a>
               </span>
             </p>
