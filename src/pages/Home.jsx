@@ -341,12 +341,14 @@ const HeroSection = () => {
               <span style={{ fontFamily: "Anek Malayalam Variable" }}>
                 വാട്സ്ആപ്പ്:{" "}
                 <a
-                  href="https://wa.me/918606529689"
+                  href="https://wa.me/918606529687
+"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#8e1b3a] hover:underline"
                 >
-                  8606529689
+                  8606529687
+
                 </a>
               </span>
             </p>
