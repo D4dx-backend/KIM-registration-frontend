@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import banner from "../assets/kbanner.png";
-import newh from "../assets/new.jpg";
+import newh from "../assets/newbanner.jpg";
 import borderbtm from "../assets/border-btm.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
